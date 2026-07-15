@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+appointments.sqlite3
+appointments.sqlite3-*
+config.bat
+node_modules
