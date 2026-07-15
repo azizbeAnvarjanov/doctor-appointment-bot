@@ -1,0 +1,27 @@
+services:
+  - type: worker
+    name: doctor-appointment-bot
+    runtime: python
+    region: frankfurt
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    disk:
+      name: appointments-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: ADMIN_GROUP_ID
+        sync: false
+      - key: DOCTOR_IDS
+        value: ""
+      - key: CLINIC_NAME
+        value: "Shifokor qabul"
+      - key: DATABASE_PATH
+        value: "/var/data/appointments.sqlite3"
+      - key: SERVICES
+        value: "Terapevt ko'rigi|Kardiolog|Nevropatolog|Ginekolog|UZI tekshiruvi|Laboratoriya tahlillari"
+      - key: TIME_SLOTS
+        value: "08:00 - 09:00|09:00 - 10:00|10:00 - 11:00|11:00 - 12:00|12:00 - 13:00|14:00 - 15:00|15:00 - 16:00|16:00 - 17:00"
